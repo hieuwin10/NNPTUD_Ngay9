@@ -28,7 +28,8 @@ app.use('/api/v1/roles', require('./routes/roles'));
 app.use('/api/v1/auth', require('./routes/auth'));
 app.use('/api/v1/carts', require('./routes/carts'));
 app.use('/api/v1/upload', require('./routes/upload'));
-mongoose.connect('mongodb://localhost:27017/NNPTUD-C3');
+app.use('/api/v1/messages', require('./routes/messages'));
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/NNPTUD-C3');
 mongoose.connection.on('connected',()=>{
   console.log("connected");
 })

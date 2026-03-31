@@ -1,0 +1,26 @@
+services:
+  app:
+    build: 
+      context: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/NNPTUD-C3
+    depends_on:
+      - mongodb
+    volumes:
+      - ./uploads:/usr/src/app/uploads
+    restart: always
+
+  mongodb:
+    image: mongo@sha256:474f5c3bf0e355bb97dafda730e725169a4d51c5578abf7be9ec7ad3fdee4481
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+    pull_policy: if_not_present
+
+volumes:
+  mongodb_data:
